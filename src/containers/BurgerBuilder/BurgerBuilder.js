@@ -6,16 +6,16 @@ class BurgerBuilder extends Component {
 
     state = {
         ingredients : {
-            salad : 1 , 
-            bacon : 1 , 
-            cheese : 2 , 
-            meat : 2
+            salad : 0 , 
+            bacon : 0 , 
+            cheese : 0 , 
+            meat : 0
         }
     };
 
     render () {
         // y this line runs 2 times
-         console.log(this.state.ingredients['salad']); 
+        // console.log(this.state.ingredients['salad']); 
         return (
             // i want to return 2 adjacent elements at the end
             <Auxiliary>
