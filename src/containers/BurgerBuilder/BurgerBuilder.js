@@ -90,7 +90,10 @@ class BurgerBuilder extends Component {
 
     purchaseCancelHandler = () => {
        this.setState({purchasing : false});
-        console.log('called');
+    };
+
+    purchaseContinueHandler = () => {
+        alert('You can continue');
     };
 
     render () {
@@ -107,7 +110,10 @@ class BurgerBuilder extends Component {
             // i want to return 2 adjacent elements at the end
             <Auxiliary>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary ingredients={this.state.ingredients} />
+                    <OrderSummary
+                        ingredients={this.state.ingredients} 
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchasedContinued={this.purchaseContinueHandler}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls 
