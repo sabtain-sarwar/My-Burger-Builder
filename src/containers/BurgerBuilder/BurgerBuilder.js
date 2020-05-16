@@ -23,7 +23,8 @@ class BurgerBuilder extends Component {
             meat : 0
         } ,
         totalPrice : 4 , 
-        purchaseable : false
+        purchaseable : false ,
+        purchasing : false
     };
 
     updatePurchaseState (ingredients) {
@@ -39,6 +40,11 @@ class BurgerBuilder extends Component {
                 return sum + el;
             } , 0 );
         this.setState({purchaseable : sum > 0});
+    };
+
+
+    purchaseHandler = () => {
+        this.setState({purchasing : true});
     }
 
 
@@ -95,7 +101,7 @@ class BurgerBuilder extends Component {
         return (
             // i want to return 2 adjacent elements at the end
             <Auxiliary>
-                <Modal>
+                <Modal show={this.state.purchasing}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
@@ -104,6 +110,7 @@ class BurgerBuilder extends Component {
                     ingredientRemoved={this.removeIngredientHandler}
                     disabled={disabledInfo}
                     purchaseable={this.state.purchaseable}
+                    ordered={this.purchaseHandler}
                     price={this.state.totalPrice}
                 />
             </Auxiliary>
