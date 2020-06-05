@@ -9,7 +9,8 @@ const withErrorHandler = (WrappedComponent , axios) => {
             error : null
         };
 
-        componentDidMount () {
+        // componentDidMount not working
+        componentWillMount () {
             axios.interceptors.request.use(req => {
                 this.setState({error : null});
                 return req;
@@ -17,6 +18,7 @@ const withErrorHandler = (WrappedComponent , axios) => {
             axios.interceptors.response.use(res => res , error => {
                 this.setState({error : error});
             });
+            console.log('called 1');
         }
 
         errorConfirmedHandler = () => {
