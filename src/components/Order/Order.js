@@ -4,7 +4,10 @@ import classes from './Order.module.css';
 const Order = (props) => {
 
     const ingredients = [];
+     console.log(props.ingredients);
+    // transforming ingredients obj into an array
     for (let ingredientName in props.ingredients ) {
+        console.log(ingredientName);
         ingredients.push(
             {
                 name : ingredientName , 
@@ -12,6 +15,15 @@ const Order = (props) => {
             }
         );
     }
+
+
+    //console.log(ingredients);
+    // (4) [{…}, {…}, {…}, {…}]
+    //     0: {name: "bacon", amount: 1}
+    //     1: {name: "cheese", amount: 1}
+    //     2: {name: "meat", amount: 1}
+    //     3: {name: "salad", amount: 1}
+    //     length: 4
 
     const ingredientOutput = ingredients.map(ig => {
         return <span 
