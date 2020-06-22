@@ -87,8 +87,9 @@ class ContactData extends Component {
                        {value : "cheapest" , displayValue : 'Cheapest'}
                    ]
                 } ,
-                value : '' ,
-                valid : true
+                value : 'cheapest' ,
+                valid : true , 
+                validation : {}
             } 
         } ,
         loading : false , 
@@ -126,6 +127,14 @@ class ContactData extends Component {
     // return true or false determining whether this is valid or not
     checkValidity = (value , rules) => {
         let isValid = true;
+
+        // if we try to access something which doesn't exists then we get an error.1 way to fix is the below one
+        // and 2nd way is to simpy add an empty validation obj to the dropdown in state.Now accessing validation and 
+        // then the required property will not fail but simply return undefined. 
+        if (!rules) {
+            return true;
+        }
+
         if (rules.required) {
             // i want to set isValid equal to the value comparison. So isValid should be equal if it is not equal to an
             // empty string.And we use trim there to remove any white spaces
