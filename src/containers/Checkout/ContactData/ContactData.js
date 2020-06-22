@@ -5,6 +5,7 @@ import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import { findAllByAltText } from '@testing-library/react';
 
 class ContactData extends Component {
 
@@ -86,10 +87,12 @@ class ContactData extends Component {
                        {value : "cheapest" , displayValue : 'Cheapest'}
                    ]
                 } ,
-                value : '' 
+                value : '' ,
+                valid : true
             } 
         } ,
-        loading : false
+        loading : false , 
+        formIsValid : false
     }
 
     orderHandler = (event) => {
@@ -151,8 +154,16 @@ class ContactData extends Component {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value , updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        console.log(updatedFormElement);
-        this.setState({orderForm : updatedOrderForm});
+        // console.log(updatedFormElement);
+        let formIsValid = true;
+        for ( let inputIdentifier in updatedOrderForm ) {
+            // if we loop through all th elements and use that valid attribute , then that attribute is not trur/false for
+            // dropdown it's undefined and undefined is always treated as false but is also never changes to true.And if we 
+            // console lof formIsValid then it shpws us undefined.A way to fix this is to simply add a valid property to 
+            // dropdown even though it doesn't have a validation rules
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({orderForm : updatedOrderForm , formIsValid : formIsValid});
     }
 
     render () {
@@ -177,7 +188,7 @@ class ContactData extends Component {
                         changed={(event) => this.inputChangedHandler(event , formElement.id)} /> // here in this anonymous fun we'll get an event
                         // object which is created by React automatically
                 ))}
-                <Button btnType="Success">ORDER</Button>
+                <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
         );
         if( this.state.loading ) {
