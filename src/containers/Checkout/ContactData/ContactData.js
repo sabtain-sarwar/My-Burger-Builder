@@ -117,7 +117,7 @@ class ContactData extends Component {
 
     // return true or false determining whether this is valid or not
     checkValidity = (value , rules) => {
-        let isValid = false;
+        let isValid = true;
         if (rules.required) {
             // i want to set isValid equal to the value comparison. So isValid should be equal if it is not equal to an
             // empty string.And we use trim there to remove any white spaces
@@ -165,6 +165,8 @@ class ContactData extends Component {
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value} 
+                        inValid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
                         changed={(event) => this.inputChangedHandler(event , formElement.id)} /> // here in this anonymous fun we'll get an event
                         // object which is created by React automatically
                 ))}
