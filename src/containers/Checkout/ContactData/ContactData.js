@@ -121,16 +121,16 @@ class ContactData extends Component {
         if (rules.required) {
             // i want to set isValid equal to the value comparison. So isValid should be equal if it is not equal to an
             // empty string.And we use trim there to remove any white spaces
-            isValid = value.trim() !== '';
+            isValid = value.trim() !== '' && isValid;
             // Now isValid is equal to true/false dpending on the check if the trimmed value is unequal to empty string
         }
 
         if (rules.minLength) {
-            isValid = value.length >= rules.minLength ;
+            isValid = value.length >= rules.minLength && isValid ;
         }
 
         if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength ;
+            isValid = value.length <= rules.maxLength && isValid ;
         }
         return isValid;
     }
