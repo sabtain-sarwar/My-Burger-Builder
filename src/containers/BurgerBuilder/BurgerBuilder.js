@@ -18,25 +18,38 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
 
+
+    // Purchasing , loading and error are kind of local UI state. We use them to show the different things. We can also manage
+    // that through redux and you can definitely manage everything through redux but there also not might be necessity to do 
+    // so. So what's definately intresting to manage through redux is ingredients and totalPrice. We passed purchaseable to
+    // our build coontrols an there to unlock the order button. So this is also more the UI state. We change something on
+    // the UI , it might not be super important for us to manage that through redux
+
+    //    checkout.js
+    // we also there have ingredients and price state. And this is a strong case for using Redux bcz here(checkout.js) have
+    // the issue of  passing the ingredients through query params
+
+    //      orders.js
+    // There we have the orders array in the state and they are actually fetched from server
+
     state = {
         ingredients : null ,
         totalPrice : 4 , 
         purchaseable : false ,
-        purchasing : false , 
-        loading : false , 
-        error : false
+        purchasing : false , // to show or hide the model
+        loading : false ,  //  to display a spinner
+        error : false // to rendered different errors
     };
 
     componentDidMount () {
-        axios.get('https://react-my-burger-264b5.firebaseio.com/ingredients.json')
-            .then(response => {
-                this.setState({ingredients : response.data});
-            })
-            .catch(error => {
-                //console.log(error);
-                this.setState({error : true});
-            });
-            console.log('called 0');
+        // axios.get('https://react-my-burger-264b5.firebaseio.com/ingredients.json')
+        //     .then(response => {
+        //         this.setState({ingredients : response.data});
+        //     })
+        //     .catch(error => {
+        //         //console.log(error);
+        //         this.setState({error : true});
+        //     });
     }
 
     updatePurchaseState (ingredients) {
