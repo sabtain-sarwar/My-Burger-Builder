@@ -150,23 +150,26 @@ class BurgerBuilder extends Component {
         //         this.setState({loading : false , purchasing :false});
         //     });
 
-        const queryParams = [];
-        for ( let i in this.state.ingredients ) {
-            // console.log(i); Burger
-            // console.log(this.state.ingredients[i]); this is the ingredient value like 1 ,2,3
-           queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
-           //console.log(queryParams);
-           console.log(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
-        }
-        // console.log(queryParams); ["bacon=0" , "cheese=0" , "meat=0" , "salad=0"]
-        queryParams.push('price=' + this.state.totalPrice);
-        const queryString = queryParams.join('&');
+         // Passing ingredients for query param but now we will get from redux store
+        // const queryParams = [];
+        // for ( let i in this.state.ingredients ) {
+        //     // console.log(i); Burger
+        //     // console.log(this.state.ingredients[i]); this is the ingredient value like 1 ,2,3
+        //    queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        //    //console.log(queryParams);
+        //    console.log(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
+        // }
+        // // console.log(queryParams); ["bacon=0" , "cheese=0" , "meat=0" , "salad=0"]
+        // queryParams.push('price=' + this.state.totalPrice);
+        // const queryString = queryParams.join('&');
 
         // which basically allows us to basically switch the page and push a new page onto that stack of pages.
-        this.props.history.push({
-            pathname : '/checkout' ,
-            search : '?' + queryString
-        });
+        // this.props.history.push({
+        //     pathname : '/checkout' ,
+        //     search : '?' + queryString
+        // });
+
+        this.props.history.push('/checkout');
     };
 
     render () {
