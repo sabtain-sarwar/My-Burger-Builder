@@ -11,8 +11,9 @@ const initialState = {
 };
 
 const reducer = ( state = initialState , action ) => {
-    switch (actionTypes) {
+    switch (action.type) {
         case actionTypes.ADD_INGREDIENT:
+            console.log('calle');
             return {
                 ...state , 
                 ingredients : {
@@ -31,7 +32,6 @@ const reducer = ( state = initialState , action ) => {
         default:
             return state;
     }
-    return state;
 };
 
 export default reducer;
