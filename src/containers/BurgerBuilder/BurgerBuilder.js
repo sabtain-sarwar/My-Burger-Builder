@@ -35,10 +35,11 @@ class BurgerBuilder extends Component {
     //      orders.js
     // There we have the orders array in the state and they are actually fetched from server
 
+    // These state properties are relevant to our UI state
     state = {
        // ingredients : null ,
         // totalPrice : 4 , 
-        purchaseable : false ,
+        // purchaseable : false , // to enable or disable the order now button
         purchasing : false , // to show or hide the model
         loading : false ,  //  to display a spinner
         error : false // to rendered different errors
@@ -67,7 +68,8 @@ class BurgerBuilder extends Component {
             .reduce((sum , el) => {
                 return sum + el;
             } , 0 );
-        this.setState({purchaseable : sum > 0});
+        // this.setState({purchaseable : sum > 0});
+        return sum > 0;
     };
 
 
@@ -195,7 +197,8 @@ class BurgerBuilder extends Component {
                         // ingredientRemoved={this.removeIngredientHandler}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        purchaseable={this.state.purchaseable}
+                        // purchaseable={this.state.purchaseable}
+                        purchaseable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}
                         // price={this.state.totalPrice}
                         price={this.props.price}
