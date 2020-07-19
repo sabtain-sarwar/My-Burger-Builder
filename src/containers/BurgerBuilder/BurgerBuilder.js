@@ -14,6 +14,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 // import * as actionTypes from '../../store/actions/actionTypes'; now used the below one 
 
 import * as burgerBuilderActions from '../../store/actions/index'; // ../../store/actions if we point to the folder then it will
+import thunk from 'redux-thunk';
 // automatically pickup index.js due to our build workflow
 
 
@@ -59,6 +60,7 @@ class BurgerBuilder extends Component {
         //         //console.log(error);
         //         this.setState({error : true});
         //     });
+        this.props.onInitIngredients();
     }
 
     updatePurchaseState (ingredients) {
@@ -191,7 +193,8 @@ class BurgerBuilder extends Component {
         // disabledInfo will be look like => {salad : true , meat : false etc}
 
         let orderSummary = null;
-        let burger = this.state.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
+        // let burger = this.state.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
+        let burger = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
 
         // if (this.state.ingredients) {
         if (this.props.ings) {
@@ -242,7 +245,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings : state.ingredients , 
-        price : state.totalPrice
+        price : state.totalPrice , 
+        error : state.error
     }
 };
 
@@ -251,7 +255,8 @@ const mapDispatchToProps = dispatch => {
         // onIngredientAdded : (ingName) => dispatch({type : actionTypes.ADD_INGREDIENT , ingredientName : ingName}) ,
         // onIngredientRemoved : (ingName) => dispatch({type : actionTypes.REMOVE_INGREDIENT , ingredientName : ingName}) 
         onIngredientAdded : (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)) ,
-        onIngredientRemoved : (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)) 
+        onIngredientRemoved : (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)) ,
+        onInitIngredients : () => dispatch(burgerBuilderActions.initIngredients())
     }
 };
 
