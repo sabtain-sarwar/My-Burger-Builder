@@ -1,13 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    ingredients : {
-        salad : 0 , 
-        bacon : 0 ,
-        cheese : 0 ,
-        meat : 0
-    } ,
-    totalPrice : 4 
+    // ingredients : {
+    //     salad : 0 , 
+    //     bacon : 0 ,
+    //     cheese : 0 ,
+    //     meat : 0
+    // } ,
+    ingredients : null , // bcz now we are fetching it from the web
+    totalPrice : 4 ,
+    error : false // i want to set it to true if our loading does fail
 };
 
 

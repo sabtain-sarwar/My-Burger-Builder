@@ -46,8 +46,8 @@ class BurgerBuilder extends Component {
         // totalPrice : 4 , 
         // purchaseable : false , // to enable or disable the order now button
         purchasing : false , // to show or hide the model
-        loading : false ,  //  to display a spinner
-        error : false // to rendered different errors
+        //loading : false ,  //  to display a spinner
+        //error : false // to rendered different errors
     };
 
     componentDidMount () {
@@ -222,9 +222,9 @@ class BurgerBuilder extends Component {
                 purchasedContinued={this.purchaseContinueHandler} />
         }
 
-        if (this.state.loading) {
-            orderSummary = <Spinner />
-        }
+        // if (this.state.loading) {
+        //     orderSummary = <Spinner />
+        // }
 
         return (
             // i want to return 2 adjacent elements at the end
