@@ -43,9 +43,24 @@ const reducer = ( state = initialState , action ) => {
                 totalPrice : state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
             };
         case actionTypes.SET_INGREDIENTS:
+            // return {
+            //     ...state , 
+            //     ingredients : action.ingredients , 
+            //     error : false
+            // };
+            // Now we hard code ingredients and don't set ingredients equal to the ingredients you get back from the server but to
+            // a JS object where you then manually map ingredients. This will loss a bit of flexibility that you had before where 
+            // you could simplay take advantage of setting up anything and then using it in your frontend app, though you never
+            // had all that flexibility anyways because we have a limited amount of ingredients supported with our css code and 
+            // the ingredient property where we also have a switch case statement.
             return {
                 ...state , 
-                ingredients : action.ingredients , 
+                ingredients : {
+                    salad : action.ingredients.salad , 
+                    bacon : action.ingredients.bacon ,
+                    cheese : action.ingredients.cheese , 
+                    meat : action.ingredients.meat
+                } , 
                 error : false
             };
         case actionTypes.FETCH_INGREDIENTS_FAILED:
