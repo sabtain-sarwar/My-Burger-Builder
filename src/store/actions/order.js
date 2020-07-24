@@ -20,9 +20,17 @@ export const purchaseBurgerFail = (error) => {
     };
 };
 
+
+export const purchaseBurgerStart = () => {
+    return {
+        type : actionTypes.PURCHASE_BURGER_START
+    };
+};
+
 // ASynchronous action creator. This is the action we dispatched from the container once we click the orderButton.
-export const purchaseBurgerStart = (orderData) => {
+export const purchaseBurger = (orderData) => {
     return dispatch => {
+        dispatch(purchaseBurgerStart());
         axios.post('/orders.json' , orderData)
         .then(response => { 
             console.log(response.data); // id of newly created element
