@@ -6,7 +6,7 @@ import axios from '../../axios-orders';
 // Synchronous action creator
 export const purchaseBurgerSuccess = (id , orderData) => {
     return {
-        type : actionTypes.purchaseBurgerSuccess ,
+        type : actionTypes.PURCHASE_BURGER_SUCCESS ,
         orderId : id , 
         orderData : orderData
     };
@@ -15,7 +15,7 @@ export const purchaseBurgerSuccess = (id , orderData) => {
 // Synchronous action creator
 export const purchaseBurgerFail = (error) => {
     return {
-        type : actionTypes.purchaseBurgerFail , 
+        type : actionTypes.PURCHASE_BURGER_FAIL , 
         error : error
     };
 };
