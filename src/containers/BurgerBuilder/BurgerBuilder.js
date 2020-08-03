@@ -13,7 +13,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 // import * as actionTypes from '../../store/actions/actionTypes'; now used the below one 
 
-import * as burgerBuilderActions from '../../store/actions/index'; // ../../store/actions if we point to the folder then it will
+import * as actions from '../../store/actions/index'; // ../../store/actions if we point to the folder then it will
 import thunk from 'redux-thunk';
 // automatically pickup index.js due to our build workflow
 
@@ -176,6 +176,7 @@ class BurgerBuilder extends Component {
         //     search : '?' + queryString
         // });
 
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     };
 
@@ -254,9 +255,10 @@ const mapDispatchToProps = dispatch => {
     return {
         // onIngredientAdded : (ingName) => dispatch({type : actionTypes.ADD_INGREDIENT , ingredientName : ingName}) ,
         // onIngredientRemoved : (ingName) => dispatch({type : actionTypes.REMOVE_INGREDIENT , ingredientName : ingName}) 
-        onIngredientAdded : (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)) ,
-        onIngredientRemoved : (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)) ,
-        onInitIngredients : () => dispatch(burgerBuilderActions.initIngredients())
+        onIngredientAdded : (ingName) => dispatch(actions.addIngredient(ingName)) ,
+        onIngredientRemoved : (ingName) => dispatch(actions.removeIngredient(ingName)) ,
+        onInitIngredients : () => dispatch(actions.initIngredients()) ,
+        onInitPurchase : () => dispatch(actions.purchaseInit())
     }
 };
 
