@@ -34,7 +34,7 @@ export const purchaseBurger = (orderData) => {
         axios.post('/orders.json' , orderData)
         .then(response => { 
             console.log(response.data); // id of newly created element
-            dispatch(purchaseBurgerSuccess(response.data , orderData))
+            dispatch(purchaseBurgerSuccess(response.data.name , orderData))
         })
         .catch(error => {
             dispatch(purchaseBurgerFail(error))
